@@ -3,7 +3,7 @@ Plugin Name: AffiliateWP - Store Credit
 Plugin URI: http://affiliatewp.com
 Description: Pay AffiliateWP referrals as store credit. Currently supports WooCommerce, with support for EDD planned.
 Author: ramiabraham
-Contributors: ramiabraham, pippinsplugins, sumobi
+Contributors: ramiabraham, mordauk, sumobi
 Tags: affiliatewp, affiliates, store credit, woo, woocommerce
 License: GPLv2 or later
 Tested up to: 4.0
