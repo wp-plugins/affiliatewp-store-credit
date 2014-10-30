@@ -1,4 +1,4 @@
-=== WP Doge ===
+=== AffiliateWP - Store Credit ===
 Plugin Name: AffiliateWP - Store Credit
 Plugin URI: http://affiliatewp.com
 Description: Pay AffiliateWP referrals as store credit. Currently supports WooCommerce, with support for EDD planned.
