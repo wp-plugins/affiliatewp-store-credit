@@ -2,18 +2,18 @@
 /*
 Plugin Name: AffiliateWP - Store Credit
 Plugin URI: http://affiliatewp.com
-Description: Pay AffiliateWP referrals as store credit. Currently supports WooCommerce, with support for EDD planned.
+Description: Pay AffiliateWP referrals to a WooCommerce account where they can spend it.
 Author: ramiabraham
-Contributors: ramiabraham, mordauk, sumobi
-Version: 0.1
+Contributors: ramiabraham, pippinsplugins, sumobi
+Version: 1.0
 Author URI: http://affiliatewp.com
 Text Domain: affwp_wc_credit
 Domain Path: /lang
  */
 
-add_action( 'plugins_loaded', array ( AffiliateWP_Store_Credit::get_instance(), 'plugin_setup' ) );
+add_action( 'plugins_loaded', array ( AffiliateWP_WooCommerce_Credit::get_instance(), 'plugin_setup' ) );
 
-class AffiliateWP_Store_Credit {
+class AffiliateWP_WooCommerce_Credit {
 	/**
 	 * Plugin instance.
 	 *
@@ -72,7 +72,7 @@ class AffiliateWP_Store_Credit {
 
 		add_action( 'woocommerce_before_checkout_form', array( $this, 'action_add_checkout_notice' ) );
 
-		add_action( 'init', array( $this, 'checkout_actions' ) );
+		add_action( 'woocommerce_cart_loaded_from_session', array( $this, 'checkout_actions' ) );
 
 		add_action( 'woocommerce_checkout_order_processed', array( $this, 'validate_coupon_usage' ), 10, 2 );
 
@@ -107,16 +107,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * process_payout function.
-	 *
-	 * @access public
-	 * @param mixed $referral_id
-	 * @param mixed $new_status
-	 * @param mixed $old_status
-	 * @return void
-	 */
+	// @todo docblock
 	public function process_payout( $referral_id, $new_status, $old_status ) {
 
 		// wp_die( var_dump( array( $referral_id, $new_status, $old_status ) ) );
@@ -133,14 +124,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * add_payment function.
-	 *
-	 * @access protected
-	 * @param mixed $referral_id
-	 * @return void
-	 */
+	// @todo docblock
 	protected function add_payment( $referral_id ) {
 
 		// If the referral id isn't valid
@@ -188,13 +172,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * action_add_checkout_notice function.
-	 *
-	 * @access public
-	 * @return void
-	 */
+	// @todo docblock
 	public function action_add_checkout_notice() {
 
 		$balance = (float) get_user_meta( get_current_user_id(), 'affwp_wc_credit_balance', true );
@@ -211,13 +189,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * checkout_actions function.
-	 *
-	 * @access public
-	 * @return void
-	 */
+	// @todo docblock
 	public function checkout_actions() {
 
 		if ( isset( $_GET['affwp_wc_apply_credit'] ) && $_GET['affwp_wc_apply_credit'] ) {
@@ -250,13 +222,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * calculate_cart_subtotal function.
-	 *
-	 * @access protected
-	 * @return void
-	 */
+	// @todo docblock
 	protected function calculate_cart_subtotal() {
 
 		$cart_subtotal = ( 'excl' == WC()->cart->tax_display_cart ) ? WC()->cart->subtotal_ex_tax : WC()->cart->subtotal;
@@ -266,15 +232,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * calculate_coupon_amount function.
-	 *
-	 * @access protected
-	 * @param mixed $credit_balance
-	 * @param mixed $cart_total
-	 * @return void
-	 */
+	// @todo docblock
 	protected function calculate_coupon_amount( $credit_balance, $cart_total ) {
 
 		// If either of these are empty, return 0
@@ -297,15 +255,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * generate_coupon function.
-	 *
-	 * @access protected
-	 * @param int $user_id (default: 0)
-	 * @param int $amount (default: 0)
-	 * @return void
-	 */
+	// @todo docblock
 	protected function generate_coupon( $user_id = 0, $amount = 0 ){
 
 		$amount = floatval( $amount );
@@ -350,15 +300,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * validate_coupon_usage function.
-	 *
-	 * @access public
-	 * @param mixed $order_id
-	 * @param mixed $data
-	 * @return void
-	 */
+	// @todo docblock
 	public function validate_coupon_usage( $order_id, $data ) {
 
 		// Get the order object
@@ -381,14 +323,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * check_for_coupon function.
-	 *
-	 * @access protected
-	 * @param array $coupons (default: array())
-	 * @return void
-	 */
+	// @todo docblock
 	protected function check_for_coupon( $coupons = array() ) {
 
 		if ( ! empty( $coupons ) ) {
@@ -411,15 +346,7 @@ class AffiliateWP_Store_Credit {
 	}
 
 
-
-	/**
-	 * process_used_coupon function.
-	 *
-	 * @access protected
-	 * @param int $user_id (default: 0)
-	 * @param string $coupon_code (default: '')
-	 * @return void
-	 */
+	// @todo docblock
 	protected function process_used_coupon( $user_id = 0, $coupon_code = '' ) {
 
 		if ( ! $user_id || ! $coupon_code ) {
