@@ -6,7 +6,7 @@ Author: ramiabraham
 Contributors: ramiabraham, mordauk, sumobi
 Tags: affiliatewp, affiliates, store credit, woo, woocommerce
 License: GPLv2 or later
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 1.0
 Requires at least: 3.5
 
@@ -36,6 +36,9 @@ A: Not yet! But it will.
 
 
 == Changelog ==
+
+= 1.1 =
+* Fix for WooCommerce 2.3.3+: Run checkout actions after cart is loaded from session.
 
 = 1.0 =
 * Initial release.
