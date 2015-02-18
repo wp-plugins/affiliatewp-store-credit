@@ -7,7 +7,7 @@ Contributors: ramiabraham, mordauk, sumobi
 Tags: affiliatewp, affiliates, store credit, woo, woocommerce
 License: GPLv2 or later
 Tested up to: 4.1
-Stable tag: 1.0
+Stable tag: 1.1
 Requires at least: 3.5
 
 == Description ==
